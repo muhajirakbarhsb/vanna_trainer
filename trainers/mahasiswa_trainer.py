@@ -94,7 +94,7 @@ class MahasiswaTrainer:
         ]
 
         for ddl in ddl_statements:
-            self.trainer.add_schema_info("student_schema", ddl.strip())
+            self.trainer.add_schema_info("student_schema", ddl.strip(), "ddl")
 
     def train_documentation(self):
         """Train with documentation about the student system"""
@@ -136,7 +136,7 @@ class MahasiswaTrainer:
         ]
 
         for doc in documentation_texts:
-            self.trainer.add_schema_info("student_documentation", doc.strip())
+            self.trainer.add_schema_info("student_documentation", doc.strip(), "documentation")
 
     def train_sample_questions(self):
         """Train with sample question-SQL pairs"""

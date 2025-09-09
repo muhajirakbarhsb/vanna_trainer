@@ -188,7 +188,7 @@ class KeuanganTrainer:
         ]
 
         for ddl in ddl_statements:
-            self.trainer.add_schema_info("financial_schema", ddl.strip())
+            self.trainer.add_schema_info("financial_schema", ddl.strip(), "ddl")
 
     def train_documentation(self):
         """Train with documentation about the financial system"""
@@ -229,7 +229,7 @@ class KeuanganTrainer:
         ]
 
         for doc in documentation_texts:
-            self.trainer.add_schema_info("financial_documentation", doc.strip())
+            self.trainer.add_schema_info("financial_documentation", doc.strip(), "documentation")
 
     def train_sample_questions(self):
         """Train with sample question-SQL pairs"""

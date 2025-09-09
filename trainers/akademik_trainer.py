@@ -95,7 +95,7 @@ class AkademikTrainer:
         ]
 
         for ddl in ddl_statements:
-            self.trainer.add_schema_info("academic_schema", ddl.strip())
+            self.trainer.add_schema_info("academic_schema", ddl.strip(), "ddl")
 
     def train_documentation(self):
         """Train with documentation about the academic system"""
@@ -136,7 +136,7 @@ class AkademikTrainer:
         ]
 
         for doc in documentation_texts:
-            self.trainer.add_schema_info("academic_documentation", doc.strip())
+            self.trainer.add_schema_info("academic_documentation", doc.strip(), "documentation")
 
     def train_sample_questions(self):
         """Train with sample question-SQL pairs"""

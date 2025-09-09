@@ -92,7 +92,7 @@ class DosenTrainer:
         ]
 
         for ddl in ddl_statements:
-            self.trainer.add_schema_info("lecturer_schema", ddl.strip())
+            self.trainer.add_schema_info("lecturer_schema", ddl.strip(), "ddl")
 
     def train_documentation(self):
         """Train with documentation about the lecturer system"""
@@ -133,7 +133,7 @@ class DosenTrainer:
         ]
 
         for doc in documentation_texts:
-            self.trainer.add_schema_info("lecturer_documentation", doc.strip())
+            self.trainer.add_schema_info("lecturer_documentation", doc.strip(), "documentation")
 
     def train_sample_questions(self):
         """Train with sample question-SQL pairs"""

@@ -131,7 +131,7 @@ class AcademicVannaTrainer:
             print(f"❌ Error adding question-SQL: {e}")
             return "Error"
 
-    def add_schema_info(self, schema_name: str, schema_description: str) -> str:
+    def add_schema_info(self, schema_name: str, schema_description: str, content_type: str = "schema") -> str:
         """Add schema information to the vector database"""
         try:
             content = f"Schema: {schema_name}\n{schema_description}"
@@ -150,7 +150,7 @@ class AcademicVannaTrainer:
                         payload={
                             "schema_name": schema_name,
                             "schema_description": schema_description,
-                            "type": "schema",
+                            "type": content_type,
                             "content": content
                         }
                     )
