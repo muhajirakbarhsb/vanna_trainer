@@ -1,0 +1,31 @@
+# Dockerfile.trainer
+FROM python:3.11-slim
+
+LABEL authors="academic_trainer"
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    curl \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Install Python dependencies
+COPY requirements-trainer.txt .
+RUN pip install --no-cache-dir -r requirements-trainer.txt
+
+# Copy training scripts
+COPY train_main.py .
+COPY vanna_setup.py .
+COPY data_generator.py .
+COPY trainers/ ./trainers/
+COPY generators/ ./generators/
+
+# Create logs directory
+RUN mkdir -p /app/logs
+
+# Default command
+CMD ["python", "train_main.py"]
