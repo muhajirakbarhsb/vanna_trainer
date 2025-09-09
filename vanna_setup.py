@@ -164,6 +164,41 @@ class AcademicVannaTrainer:
             print(f"❌ Error adding schema: {e}")
             return "Error"
 
+    def add_documentation(self, documentation: str) -> str:
+        """Add documentation to the vector database"""
+        try:
+            # Generate a unique ID based on content
+            import uuid
+            doc_id = str(uuid.uuid4())
+
+            # Generate embedding
+            embedding = self.generate_embedding(documentation)
+            if not embedding:
+                return "Failed to generate embedding"
+
+            # Store in Qdrant
+            self.qdrant_client.upsert(
+                collection_name=self.collection_name,
+                points=[
+                    PointStruct(
+                        id=doc_id,
+                        vector=embedding,
+                        payload={
+                            "documentation": documentation,
+                            "type": "documentation",
+                            "content": documentation
+                        }
+                    )
+                ]
+            )
+
+            print(f"✅ Added documentation: {documentation[:50]}...")
+            return doc_id
+
+        except Exception as e:
+            print(f"❌ Error adding documentation: {e}")
+            return "Error"
+
     def run_sql(self, sql: str) -> pd.DataFrame:
         """Execute SQL query and return results"""
         try:

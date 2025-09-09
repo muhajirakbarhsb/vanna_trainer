@@ -133,7 +133,7 @@ class DosenTrainer:
         ]
 
         for doc in documentation_texts:
-            self.trainer.add_schema_info("lecturer_documentation", doc.strip(), "documentation")
+            self.trainer.add_documentation(doc.strip())
 
     def train_sample_questions(self):
         """Train with sample question-SQL pairs"""
